@@ -8,5 +8,9 @@
  * @author Admin
  */
 public class Administrador {
-    
+
+    public Administrador() {
+    }
+     
+
 }

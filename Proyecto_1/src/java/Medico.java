@@ -8,5 +8,6 @@
  * @author Admin
  */
 public class Medico {
+
     
 }
