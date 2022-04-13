@@ -111,10 +111,9 @@ public class Modelo {
 //Guarda en la base de datos el medico que recibe por parámetros.
     public static int agregarMedico(Medico med) throws Exception {
         String sql = "insert into Medicos "
-                + "(codigo,cedula,nombre,numero_telefono,correo) "
-                + "values ('%s','%s','%s',%d,'%s')";
-        sql = String.format(sql, med.getCodigo(),
-                med.getCedula(),
+                + "(cedula,nombre,numero_telefono,correo) "
+                + "values ('%s','%s',%d,'%s')";
+        sql = String.format(sql, med.getCedula(),
                 med.getNombre(),
                 med.getTelefono(),
                 med.getEmail());
@@ -141,7 +140,7 @@ public class Modelo {
     public static Medico medicoGet(String id) throws Exception {
         String sql = "select * from "
                 + "Medicos  c  "
-                + "where c.codigo = %s";
+                + "where c.cedula = %s";
         sql = String.format(sql, Integer.parseInt(id));
         ResultSet rs = clinica.executeQuery(sql);
         if (rs.next()) {
@@ -193,8 +192,8 @@ public class Modelo {
 //Busca en la base de datos y modifica el médico que corresponde con los datos datos recibidos por parámetros
     public static int modificarMedico(Medico med) throws Exception {
         String sql = "update Medicos set nombre = '%s',numero_telefono = %d, correo ='%s'"
-                + "where codigo = %s ";
-        sql = String.format(sql, med.getNombre(), med.getTelefono(), med.getEmail(), med.getCodigo());
+                + "where cedula = %s ";
+        sql = String.format(sql, med.getNombre(), med.getTelefono(), med.getEmail());
         ResultSet rs = clinica.executeUpdateWithKeys(sql);
         if (rs.next()) {
             return rs.getInt(1);
@@ -206,9 +205,8 @@ public class Modelo {
 //Lee de la variable Result set los datos de un MEDICO leido desde la base de datos,
 //y los asigna a una nueva instancia para después retornarlo.
     private static Medico toMedico(ResultSet rs) throws Exception {
-        Medico obj = new Medico("", -1, "", -1, "");
-        obj.setCodigo(rs.getString("codigo"));
-        obj.setCedula(Integer.parseInt(rs.getString("cedula")));
+        Medico obj = new Medico("", "", -1, "");
+        obj.setCedula(rs.getString("cedula"));
         obj.setNombre(rs.getString("nombre"));
         obj.setTelefono(Integer.parseInt(rs.getString("numero_telefono")));
         obj.setEmail(rs.getString("correo"));
