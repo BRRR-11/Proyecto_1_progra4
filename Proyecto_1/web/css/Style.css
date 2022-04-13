@@ -7,3 +7,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     Author     : XPC
 */
 
+body {
+    margin: 0;
+    padding: 2em;
+    background-color: #bdd5ea;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+h3 {
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 12px;
+  }
