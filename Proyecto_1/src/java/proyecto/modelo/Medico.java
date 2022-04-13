@@ -4,24 +4,16 @@ package proyecto.modelo;
 import java.io.Serializable;
 
 public class Medico implements Serializable, Jsonable{
-    String codigo;
-    int cedula;
+    String cedula;
     String nombre;
     int telefono;
     String email;
 
    public Medico(){
-       this("",-1,"",-1,"");
+       this("","",-1,"");
    }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
+    
      public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -34,11 +26,11 @@ public class Medico implements Serializable, Jsonable{
         this.telefono = telefono;
     }
     
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
@@ -51,8 +43,8 @@ public class Medico implements Serializable, Jsonable{
     }
 
    
-   public Medico(String codigo,int cedula, String nombre, int telefono, String email){
-        this.codigo=codigo;
+   public Medico(String cedula, String nombre, int telefono, String email){
+        
         this.cedula = cedula;
         this.nombre=nombre;
         this.telefono=telefono;
