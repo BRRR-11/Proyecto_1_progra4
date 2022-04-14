@@ -41,7 +41,7 @@ public class Modelo {
             if (rs.next()) {
                 return toUser(rs);
             } else {
-                return new Usuario(usuario.id, usuario.clave, 0);
+                return new Usuario(usuario.id, usuario.clave);
             }
         } catch (SQLException ex) {
         }
@@ -54,18 +54,16 @@ public class Modelo {
         Usuario obj = new Usuario();
         obj.setId(rs.getString("id"));
         obj.setClave(rs.getString("clave"));
-        obj.setTipo(Integer.parseInt(rs.getString("tipo")));
         return obj;
     }
 
 //Guarda en la base de datos el usuario que recibe por parámetros.
     public static int agregarUsuario(Usuario us) throws Exception {
         String sql = "insert into Usuario "
-                + "(id,clave,tipo) "
-                + "values ('%s','%s',%d)";
+                + "(id,clave) "
+                + "values ('%s','%s')";
         sql = String.format(sql, us.getId(),
-                us.getClave(),
-                us.getTipo());
+                us.getClave());
         ResultSet rs = clinica.executeUpdateWithKeys(sql);
         if (rs.next()) {
             return rs.getInt(1);
@@ -112,7 +110,7 @@ public class Modelo {
     public static int agregarMedico(Medico med) throws Exception {
         String sql = "insert into Medicos "
                 + "(cedula,nombre,numero_telefono,correo) "
-                + "values ('%s','%s',%d,'%s')";
+                + "values ('%s','%s','%s',%d,'%s')";
         sql = String.format(sql, med.getCedula(),
                 med.getNombre(),
                 med.getTelefono(),
@@ -235,9 +233,10 @@ public class Modelo {
 //Lee de la variable Result set los datos de un paciente leido desde la base de datos,
 //y los asigna a una nueva instancia para después retornarlo.
     private static Paciente toPaciente(ResultSet rs) throws Exception {
-        Paciente obj = new Paciente("", "", "", "", -1, "");
+        Paciente obj = new Paciente("", "","", "", "", -1, "");
         obj.setCedula(rs.getString("cedula"));
         obj.setNombre(rs.getString("nombre"));
+        obj.setApellido(rs.getString("apellido"));
         obj.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
         obj.setDireccion(rs.getString("direccion"));
         obj.setNumero_telefono(Integer.parseInt(rs.getString("numero_telefono")));

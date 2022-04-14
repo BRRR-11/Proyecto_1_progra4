@@ -9,6 +9,7 @@ public class Medico implements Serializable, Jsonable {
     String apellido;
     int telefono;
     String email;
+//    String especialidad;
 
     public Medico() {
         this("", "", "", -1, "");

@@ -9,18 +9,20 @@ import java.io.Serializable;
 public class Paciente implements Serializable, Jsonable{
     String cedula;
     String nombre;
+    String apellido;
     String fecha_nacimiento;
     String direccion;
     int numero_telefono;
     String correo;
 
     public Paciente(){
-    this("","","","",-1,"");
+    this("","","","","",-1,"");
     }
     
-    public Paciente(String cedula, String nombre, String fecha_nacimiento, String direccion, int numero_telefono, String correo) {
+    public Paciente(String cedula, String nombre,String apellido, String fecha_nacimiento, String direccion, int numero_telefono, String correo) {
         this.cedula = cedula;
         this.nombre = nombre;
+        this.apellido= apellido;
         this.fecha_nacimiento = fecha_nacimiento;
         this.direccion = direccion;
         this.numero_telefono = numero_telefono;
@@ -41,6 +43,13 @@ public class Paciente implements Serializable, Jsonable{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getFecha_nacimiento() {
