@@ -1,4 +1,4 @@
-package principal.logic;
+package presentacion.logic;
 
 public interface Jsonable {
     

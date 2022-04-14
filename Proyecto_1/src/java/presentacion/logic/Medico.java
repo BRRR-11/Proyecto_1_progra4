@@ -1,13 +1,17 @@
-package principal.logic;
+package presentacion.logic;
 
-public class Administrador {
+import java.io.Serializable;
+
+public class Medico implements Serializable, Jsonable {
+
     String cedula;
     String nombre;
     String apellido;
     int telefono;
     String email;
+//    String especialidad;
 
-    public Administrador() {
+    public Medico() {
         this("", "", "", -1, "");
     }
     public String getNombre() {
@@ -46,7 +50,7 @@ public class Administrador {
         this.email = email;
     }
 
-    public Administrador(String cedula, String nombre, String apellido, int telefono, String email) {
+    public Medico(String cedula, String nombre, String apellido, int telefono, String email) {
 
         this.cedula = cedula;
         this.nombre = nombre;
@@ -57,4 +61,3 @@ public class Administrador {
 
 
 }
-

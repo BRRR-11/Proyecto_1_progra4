@@ -1,5 +1,5 @@
 
-package principal.logic;
+package presentacion.logic;
 
 import java.io.Serializable;
 
