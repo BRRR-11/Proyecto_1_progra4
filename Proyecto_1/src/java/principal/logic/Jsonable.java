@@ -1,4 +1,4 @@
-package proyecto.modelo;
+package principal.logic;
 
 public interface Jsonable {
     

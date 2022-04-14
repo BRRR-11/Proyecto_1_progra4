@@ -1,5 +1,5 @@
 
-package proyecto.modelo;
+package principal.logic;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package proyecto.modelo;
+package principal.logic;
 
 public class Administrador {
     

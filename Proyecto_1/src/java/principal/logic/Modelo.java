@@ -1,5 +1,5 @@
 
-package proyecto.modelo;
+package principal.logic;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -205,7 +205,7 @@ public class Modelo {
 //Lee de la variable Result set los datos de un MEDICO leido desde la base de datos,
 //y los asigna a una nueva instancia para después retornarlo.
     private static Medico toMedico(ResultSet rs) throws Exception {
-        Medico obj = new Medico("", "", -1, "");
+        Medico obj = new Medico("", "","", -1, "");
         obj.setCedula(rs.getString("cedula"));
         obj.setNombre(rs.getString("nombre"));
         obj.setTelefono(Integer.parseInt(rs.getString("numero_telefono")));
