@@ -1,0 +1,25 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #bdd5ea;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.titulo{
+     
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 3em  ;
+    font-weight: bold;
+    color: #f7f7ff;
+    padding: .5em 0em .5em 0em;
+    text-align: center;
+    background-color: #577399; 
+}
