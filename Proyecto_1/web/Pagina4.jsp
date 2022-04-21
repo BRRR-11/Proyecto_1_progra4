@@ -3,7 +3,7 @@
     Created on : 20 abr. 2022, 19:29:23
     Author     : ariqq
 --%>
-<%@page contentType="text/html" import="java.util.*" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
