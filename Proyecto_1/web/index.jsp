@@ -1,12 +1,12 @@
 <%-- 
     Document   : index
-    Created on : 20 abr. 2022, 19:26:29
+    Created on : 20 abr. 2022, 19:45:36
     Author     : ariqq
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+html>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -53,4 +53,3 @@
         </div>
     </body>
 </html>
-
