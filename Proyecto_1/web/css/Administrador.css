@@ -87,8 +87,8 @@ p{
     }
 }
 .centrar{
-    text-align: center;
-    margin-top: 30px;
+   text-align: center;
+   margin-top: 30px;
     /*margin-left: 250px;*/
     /*padding-left: 250px;*/
 }
@@ -121,5 +121,6 @@ p{
   position: relative;
   max-width: 1500px;
   margin-left: 27%;
+ 
 }
 
