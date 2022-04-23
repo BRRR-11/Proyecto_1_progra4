@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Pagina2
-    Created on : 20 abr. 2022, 19:27:46
-    Author     : ariqq
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

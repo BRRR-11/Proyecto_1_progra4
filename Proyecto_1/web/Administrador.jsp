@@ -25,7 +25,9 @@
                     <div class="column">
                         <div class= "p1">
                             <h3><strong>Listar médicos</strong></h3>
-                            <button class="button button1">listar</button>
+                            <a href="ListaMedicos.jsp">
+                                <button class="button button1">Ingresar</button>
+                            </a>
                         </div>
                     </div>
 
