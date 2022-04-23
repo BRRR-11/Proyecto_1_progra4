@@ -6,7 +6,7 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/Pagina2.css" rel="stylesheet" type="text/css" />
+        <link href="css/ListaMedicos.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
@@ -17,13 +17,13 @@
 
         <div class="row">
             <h2 class="bienvenido">Busqueda Medicos</h2>
-        </div>
+        
         <div class="section1">
-                        <div class= "p1">
-                            <h3><strong>Registro de médicos</strong></h3>
-                            <input type="text" value="Submit" value="ej 117020250">
-                        </div>
-                    </div>      
-        </div>
+            <div class= "p1">
+                <h3><strong>Cedula del médico</strong></h3>
+                <input class="Imp" type="text" value="ej 117020250">
+            </div>
+        </div>      
+        
     </body>
 </html>
