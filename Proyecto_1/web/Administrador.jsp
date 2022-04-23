@@ -34,6 +34,7 @@
                     <div class="column">
                         <div class= "p2">
                             <h3><strong>Listar especialidades</strong></h3>
+                            <a href="ListaEsp.jsp">
                             <button class="button button1">listar</button>
                         </div>
                     </div>
