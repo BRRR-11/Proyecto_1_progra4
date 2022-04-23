@@ -45,7 +45,9 @@
                     <div class="column">
                         <div class= "p3">
                             <h3><strong>Listar ubicaciones</strong></h3>
-                            <button class="button button1">Listar</button>
+                            <a href="ListarUbicaciones.jsp">
+                                <button class="button button1">listar</button>
+                            </a>
                         </div>
                     </div>
                     <div class="column">
