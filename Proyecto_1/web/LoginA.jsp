@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +10,7 @@
     <body>
         <header class="titulo">
             <img width="100" height="100" style="margin-right: 1em; vertical-align: middle;" src="img/hospital.png"/>
-            <span>Clinica San Tinder</span>
+            <span>Clinica San Diego</span>
         </header>
         <div>
             <div class="center">
@@ -28,7 +27,7 @@
                     <div class="pass">¿Olvidó la contraseña?</div>
                     <input type="submit" value="Iniciar Sesión">
                     <div class="signup_link">
-                        ¿No está registrado?<a href="Registro.jsp">Regístrate</a>
+                        ¿No está registrado?<a href="RegistroA.jsp">Regístrate</a>
                     </div>
                 </form>
             </div>

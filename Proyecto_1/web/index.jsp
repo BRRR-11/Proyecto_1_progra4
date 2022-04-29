@@ -29,7 +29,7 @@
                 <div class="column">
                     <img width="100" height="100" style="margin-right: 1em; vertical-align: middle;" src="img/hospital.png"/>
                     <h3><strong>Clinica</strong></h3>
-                    <a href="Pagina2.jsp">
+                    <a href="LoginM.jsp">
                         <button class="button button1">Ingresar</button>
                     </a>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="column">
                     <img width="100" height="100" style="margin-right: 1em; vertical-align: middle;" src="img/hospital.png"/>
                     <h3><strong>Administrador</strong></h3>
-                    <a href="Administrador.jsp">
+                    <a href="LoginA.jsp">
                         <button class="button button1">Ingresar</button>
                     </a>
                 </div>
