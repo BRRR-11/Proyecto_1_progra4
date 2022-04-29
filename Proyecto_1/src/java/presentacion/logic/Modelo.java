@@ -233,14 +233,11 @@ public class Modelo {
 //Lee de la variable Result set los datos de un paciente leido desde la base de datos,
 //y los asigna a una nueva instancia para después retornarlo.
     private static Paciente toPaciente(ResultSet rs) throws Exception {
-        Paciente obj = new Paciente("", "","", "", "", -1, "");
+        Paciente obj = new Paciente("","","","");
         obj.setCedula(rs.getString("cedula"));
         obj.setNombre(rs.getString("nombre"));
         obj.setApellido(rs.getString("apellido"));
-        obj.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
-        obj.setDireccion(rs.getString("direccion"));
-        obj.setNumero_telefono(Integer.parseInt(rs.getString("numero_telefono")));
-        obj.setCorreo(rs.getString("correo"));
+        obj.setClave(rs.getString("clave"));
         return obj;
     }
 
@@ -263,15 +260,13 @@ public class Modelo {
 //Guarda en la base de datos el paciente que recibe por parámetros.
     public static int agregarPaciente(Paciente pac) throws Exception {
         String sql = "insert into Pacientes "
-                + "(cedula,nombre,fecha_nacimiento,direccion,numero_telefono,correo) "
-                + "values ('%s','%s','%s','%s',%d,'%s')";
+                + "(cedula,nombre,apellido,clave) "
+                + "values ('%s','%s','%s','%s')";
         sql = String.format(sql,
                 pac.getCedula(),
                 pac.getNombre(),
-                pac.getFecha_nacimiento(),
-                pac.getDireccion(),
-                pac.getNumero_telefono(),
-                pac.getCorreo());
+                pac.getApellido(),
+                pac.getClave());
         return clinica.executeUpdate(sql);
     }
 
@@ -316,11 +311,10 @@ public class Modelo {
     
 //Busca en la base de datos y modifica el paciente que corresponde con los datos datos recibidos por parámetros
     public static int modificarPaciente(Paciente pac) throws Exception {
-        String sql = "update Pacientes set nombre = '%s',fecha_nacimiento='%s',direccion = '%s',"
-                + "numero_telefono = %d, correo = '%s'"
+        String sql = "update Pacientes set nombre = '%s',apellido='%s',clave = '%s',"
                 + "where cedula = %s ";
-        sql = String.format(sql, pac.getNombre(), pac.getFecha_nacimiento(), pac.getDireccion(),
-                pac.getNumero_telefono(), pac.getCorreo(), pac.getCedula());
+        sql = String.format(sql, pac.getNombre(), pac.getApellido(), pac.getClave(),
+                pac.getCedula());
         ResultSet rs = clinica.executeUpdateWithKeys(sql);
         if (rs.next()) {
             return rs.getInt(1);
