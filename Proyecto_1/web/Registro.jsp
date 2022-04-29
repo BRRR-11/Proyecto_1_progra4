@@ -17,19 +17,23 @@
                 <h1>Inicio de Sesión</h1>
                 <form method="post">
                     <div class="txt_field">
-                        <input type="text" required>
+                        <input type="text" required name="nombre">
                         <label>Nombre</label>
                     </div>
                     <div class="txt_field">
-                        <input type="text" required>
+                        <input type="text" required name="apellido">
+                        <label>Apellido</label>
+                    </div>
+                    <div class="txt_field">
+                        <input type="text" required name="cedula">
                         <label>Cedula</label>
                     </div>
                     <div class="txt_field">
-                        <input type="text" required>
+                        <input type="text" required name="contrasena">
                         <label>Contraseña</label>
                     </div>
                     <div class="txt_field">
-                        <input type="text" required>
+                        <input type="text" required name="confirme">
                         <label>Confirmee la Contraseña</label>
                     </div>
                     <input type="submit" value="Crear Usuario" href="Pagina3.jsp">
