@@ -6,13 +6,16 @@ package presentacion.servletPaciente;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import presentacion.logic.Paciente;
-import presentacion.logic.Modelo;
+import presentacion.logic.Service;
 
 /**
  *
@@ -24,13 +27,19 @@ public class ServletRegistro extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        Paciente obj = new Paciente();
+        obj.setCedula(request.getParameter("cedula"));
+        obj.setNombre(request.getParameter("nombre"));
+        obj.setApellido(request.getParameter("apellido"));
+        obj.setClave(request.getParameter("clave"));
+
         try (PrintWriter out = response.getWriter()) {
-            Paciente obj = new Paciente();
-            obj.setCedula(request.getParameter("cedula"));
-            obj.setNombre(request.getParameter("nombre"));
-            obj.setApellido(request.getParameter("apellido"));
-            obj.setClave(request.getParameter("clave"));
-            Modelo.agregarPaciente(obj, (request.getParameter("clave")), (request.getParameter("clave1")));
+            Service.instance().clienteAdd(obj);
+            out.println("controller");
+            RequestDispatcher a = request.getRequestDispatcher("Pagina3.jsp");
+            a.forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ServletRegistro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
