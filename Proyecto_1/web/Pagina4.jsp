@@ -25,7 +25,7 @@
                         <input type="password" required>
                         <label>Contraseña</label>
                     </div>
-                    <div class="pass">¿Olvidó la contraseña?</div>
+                    <div class="pass">¿Olvidó la contraseña ?</div>
                     <input type="submit" value="Iniciar Sesión">
                     <div class="signup_link">
                         ¿No está registrado?<a href="Registro.jsp">Regístrate</a>
