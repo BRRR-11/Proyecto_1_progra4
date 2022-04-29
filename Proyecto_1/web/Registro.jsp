@@ -15,7 +15,7 @@
         <div>
             <div class="center">
                 <h1>Inicio de Sesión</h1>
-                <form method="post">
+                <form action="ServletRegistro" method="POST">
                     <div class="txt_field">
                         <input type="text" required name="nombre">
                         <label>Nombre</label>
