@@ -28,7 +28,7 @@
                     <div class="pass">¿Olvidó la contraseña?</div>
                     <input type="submit" value="Iniciar Sesión">
                     <div class="signup_link">
-                        ¿No está registrado?<a href="Registro.jps">Regístrate</a>
+                        ¿No está registrado?<a href="Registro.jsp">Regístrate</a>
                     </div>
                 </form>
             </div>
