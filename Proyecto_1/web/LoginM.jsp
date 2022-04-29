@@ -10,7 +10,7 @@
     <body>
         <header class="titulo">
             <img width="100" height="100" style="margin-right: 1em; vertical-align: middle;" src="img/hospital.png"/>
-            <span>Clinica San Diego</span>
+            <span>Clinica San Tinder</span>
         </header>
         <div>
             <div class="center">
