@@ -22,7 +22,7 @@
                         <label>Nombre de usuario</label>
                     </div>
                     <div class="txt_field">
-                        <input type="text" required>
+                        <input type="password" required>
                         <label>Contraseña</label>
                     </div>
                     <div class="pass">¿Olvidó la contraseña?</div>

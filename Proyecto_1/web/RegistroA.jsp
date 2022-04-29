@@ -25,15 +25,15 @@
                         <label>Apellido</label>
                     </div>
                     <div class="txt_field">
-                        <input type="text" required name="cedula">
+                        <input type="password" required name="cedula">
                         <label>Cedula</label>
                     </div>
                     <div class="txt_field">
-                        <input type="text" required name="contrasena">
+                        <input type="password" required name="contrasena">
                         <label>Contraseña</label>
                     </div>
                     <div class="txt_field">
-                        <input type="text" required name="confirme">
+                        <input type="password" required name="confirme">
                         <label>Confirmee la Contraseña</label>
                     </div>
                     <input type="submit" value="Crear Usuario" href="Administrador.jsp">

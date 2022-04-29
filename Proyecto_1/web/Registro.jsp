@@ -29,12 +29,21 @@
                         <label>Cedula</label>
                     </div>
                     <div class="txt_field">
+<<<<<<< Updated upstream
                         <input type="text" required name="clave">
                         <label>Contraseña</label>
                     </div>
                     <div class="txt_field">
                         <input type="text" required name="clave1">
                         <label>Confirme la Contraseña</label>
+=======
+                        <input type="password" required name="contrasena">
+                        <label>Contraseña</label>
+                    </div>
+                    <div class="txt_field">
+                        <input type="password" required name="confirme">
+                        <label>Confirmee la Contraseña</label>
+>>>>>>> Stashed changes
                     </div>
                     <input type="submit" value="Crear Usuario" href="Pagina3.jsp">
                 </form>
