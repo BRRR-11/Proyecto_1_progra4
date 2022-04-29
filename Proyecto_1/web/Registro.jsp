@@ -35,7 +35,6 @@
                     <div class="txt_field">
                         <input type="text" required name="clave1">
                         <label>Confirme la Contraseña</label>
-                        <label>Contraseña</label>
                     </div>
                     <input type="submit" value="Crear Usuario" href="Pagina3.jsp">
                 </form>
