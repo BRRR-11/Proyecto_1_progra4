@@ -27,15 +27,16 @@ public class ServletRegistro extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        Paciente obj = new Paciente();
+        obj.setCedula(request.getParameter("cedula"));
+        obj.setNombre(request.getParameter("nombre"));
+        obj.setApellido(request.getParameter("apellido"));
+        obj.setClave(request.getParameter("clave"));
+        
+        request.setAttribute("objController", obj);
+        
         try (PrintWriter out = response.getWriter()) {
-            Paciente obj = new Paciente();
-            obj.setCedula(request.getParameter("cedula"));
-            obj.setNombre(request.getParameter("nombre"));
-            obj.setApellido(request.getParameter("apellido"));
-            obj.setClave(request.getParameter("clave"));
-            //Service.instance().clienteAdd(obj);
-            out.println("controller");
+            Service.instance().clienteAdd(obj);
             RequestDispatcher a = request.getRequestDispatcher("prueba.jsp");
             a.forward(request, response);
         } catch (Exception ex) {
