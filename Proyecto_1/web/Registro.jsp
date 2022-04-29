@@ -36,7 +36,9 @@
                         <input type="text" required name="clave1">
                         <label>Confirme la Contraseña</label>
                     </div>
-                    <input type="submit" value="Crear Usuario" href="Pagina3.jsp">
+                    <div class="botonCen">
+                        <input type="submit" value="Crear Usuario">
+                    </div>
                 </form>
             </div>
         </div>

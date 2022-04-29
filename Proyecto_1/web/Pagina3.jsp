@@ -4,6 +4,7 @@
     Author     : ariqq
 --%>
 
+<%@page import="presentacion.logic.Paciente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -59,6 +60,8 @@
 
                 </div>
             </div>
+            
         </div>
+        
     </body>
 </html>
