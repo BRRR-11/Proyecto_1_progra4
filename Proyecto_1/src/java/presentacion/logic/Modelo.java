@@ -1,4 +1,3 @@
-
 package presentacion.logic;
 
 import java.sql.Date;
@@ -47,7 +46,7 @@ public class Modelo {
         }
         return null;
     }
-    
+
 //Lee de la variable Result set los datos de un usuario leido desde la base de datos,
 //y los asigna a una nueva instancia para después retornarlo.
     private static Usuario toUser(ResultSet rs) throws Exception {
@@ -58,20 +57,25 @@ public class Modelo {
     }
 
 //Guarda en la base de datos el usuario que recibe por parámetros.
-    public static int agregarUsuario(Usuario us) throws Exception {
-        String sql = "insert into Usuario "
-                + "(id,clave) "
-                + "values ('%s','%s')";
-        sql = String.format(sql, us.getId(),
-                us.getClave());
-        ResultSet rs = clinica.executeUpdateWithKeys(sql);
-        if (rs.next()) {
-            return rs.getInt(1);
+    public static int agregarUsuario(Usuario us, String clave1, String clave2) throws Exception {
+        if (clave1.equals(clave2)) {
+            String sql = "insert into Usuario "
+                    + "(id,clave) "
+                    + "values ('%s','%s')";
+            sql = String.format(sql, us.getId(),
+                    us.getClave());
+            ResultSet rs = clinica.executeUpdateWithKeys(sql);
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                return 0;
+            }
         } else {
-            return 0;
+            throw new Exception("Paciente no se pudo agregar");
         }
+
     }
-    
+
 //Busca en la base de datos y retorna el usuario que corresponde con el recibido por parámetros
     public static Usuario getUsuario(String id) throws Exception {
         try {
@@ -88,7 +92,7 @@ public class Modelo {
         }
         return null;
     }
-    
+
 //Busca en la base de datos y modifica el usuario que corresponde con los datos datos recibidos por parámetros
     public static int modificarUsuario(Usuario us) throws Exception {
         String sql = "update Usuario set clave='%s'"
@@ -105,7 +109,6 @@ public class Modelo {
 //*--------------------------------------------------------------------------------------------------------------------
 //*--------------------------------------------Medicos-----------------------------------------------------------------
 //*--------------------------------------------------------------------------------------------------------------------
-
 //Guarda en la base de datos el medico que recibe por parámetros.
     public static int agregarMedico(Medico med) throws Exception {
         String sql = "insert into Medicos "
@@ -118,7 +121,7 @@ public class Modelo {
         return clinica.executeUpdate(sql);
     }
 
- //Retorna en una lista todos los medicos almacenados en la BD
+    //Retorna en una lista todos los medicos almacenados en la BD
     public static List<Medico> listarTodosLosMedicos() throws Exception {
         List<Medico> medicos;
         medicos = new ArrayList();
@@ -199,11 +202,11 @@ public class Modelo {
             return 0;
         }
     }
-    
+
 //Lee de la variable Result set los datos de un MEDICO leido desde la base de datos,
 //y los asigna a una nueva instancia para después retornarlo.
     private static Medico toMedico(ResultSet rs) throws Exception {
-        Medico obj = new Medico("", "","", -1, "");
+        Medico obj = new Medico("", "", "", -1, "");
         obj.setCedula(rs.getString("cedula"));
         obj.setNombre(rs.getString("nombre"));
         obj.setTelefono(Integer.parseInt(rs.getString("numero_telefono")));
@@ -214,7 +217,6 @@ public class Modelo {
 //*--------------------------------------------------------------------------------------------------------------------
 //*--------------------------------------------Paciente----------------------------------------------------------------
 //*--------------------------------------------------------------------------------------------------------------------
-
 //Busca en la base de datos y retorna el medico que corresponde con el recibido por parámetros
     public static Paciente pacienteGet(String id) throws Exception {
         String sql = "select * from "
@@ -233,7 +235,7 @@ public class Modelo {
 //Lee de la variable Result set los datos de un paciente leido desde la base de datos,
 //y los asigna a una nueva instancia para después retornarlo.
     private static Paciente toPaciente(ResultSet rs) throws Exception {
-        Paciente obj = new Paciente("","","","");
+        Paciente obj = new Paciente("", "", "", "");
         obj.setCedula(rs.getString("cedula"));
         obj.setNombre(rs.getString("nombre"));
         obj.setApellido(rs.getString("apellido"));
@@ -258,8 +260,9 @@ public class Modelo {
     }
 
 //Guarda en la base de datos el paciente que recibe por parámetros.
-    public static int agregarPaciente(Paciente pac) throws Exception {
-        String sql = "insert into Pacientes "
+    public static int agregarPaciente(Paciente pac, String clave1, String clave2){
+        if(clave1.equals(clave2)){
+            String sql = "insert into Pacientes "
                 + "(cedula,nombre,apellido,clave) "
                 + "values ('%s','%s','%s','%s')";
         sql = String.format(sql,
@@ -268,6 +271,11 @@ public class Modelo {
                 pac.getApellido(),
                 pac.getClave());
         return clinica.executeUpdate(sql);
+        }
+        else{
+           return 0;
+        }
+        
     }
 
 //Retorna en una lista los pacientes que corresponden con el criterio que recibe por párametros,
@@ -308,7 +316,7 @@ public class Modelo {
         }
         return prods;
     }
-    
+
 //Busca en la base de datos y modifica el paciente que corresponde con los datos datos recibidos por parámetros
     public static int modificarPaciente(Paciente pac) throws Exception {
         String sql = "update Pacientes set nombre = '%s',apellido='%s',clave = '%s',"
@@ -322,18 +330,19 @@ public class Modelo {
             return 0;
         }
     }
-    
+
 //Retorna true si se encuentra ese paciente en la base de datos
-    public static boolean existe_paciente(int ced){
-        String sql="select count(cedula) as c from clinica.pacientes where cedula = '%d'";
-        sql=String.format(sql,ced);
+    public static boolean existe_paciente(int ced) {
+        String sql = "select count(cedula) as c from clinica.pacientes where cedula = '%d'";
+        sql = String.format(sql, ced);
         ResultSet rs = clinica.executeQuery(sql);
-        try{
-            if(rs.next()){
-                if(rs.getInt("c") == 1)
+        try {
+            if (rs.next()) {
+                if (rs.getInt("c") == 1) {
                     return true;
+                }
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             return false;
         }
         return false;
@@ -341,26 +350,30 @@ public class Modelo {
 //*--------------------------------------------------------------------------------------------------------------------
 //*----------------------------------------------Citas----------------------------------------------------------------
 //*--------------------------------------------------------------------------------------------------------------------
+
     public static List<Cita> busquedaCitasPaciente(int paciente) throws Exception {
-       List<Cita> c;
-       c = new ArrayList();
-       try {
-           String sql = "select * from citas where paciente="+paciente+" order by fecha desc";
-           ResultSet rs = clinica.executeQuery(sql);
-              while (rs.next()) {
+        List<Cita> c;
+        c = new ArrayList();
+        try {
+            String sql = "select * from citas where paciente=" + paciente + " order by fecha desc";
+            ResultSet rs = clinica.executeQuery(sql);
+            while (rs.next()) {
                 c.add(toCita(rs));
-              }
-       } catch (SQLException e) {
-           
-       }
-       return c;
-   }
-   
-   private static Cita toCita(ResultSet rs) throws Exception {
+            }
+        } catch (SQLException e) {
+
+        }
+        return c;
+    }
+
+    private static Cita toCita(ResultSet rs) throws Exception {
         Cita obj = new Cita("", 0, null, "", "", 0);
-        ResultSet rsM = clinica.executeQuery("select * from Medicos where codigo='"+rs.getString("medico")+"'");
-        if(rsM.next()) obj.setMedico(rsM.getString("nombre"));
-        else obj.setMedico(rs.getString("medico"));
+        ResultSet rsM = clinica.executeQuery("select * from Medicos where codigo='" + rs.getString("medico") + "'");
+        if (rsM.next()) {
+            obj.setMedico(rsM.getString("nombre"));
+        } else {
+            obj.setMedico(rs.getString("medico"));
+        }
         obj.setPaciente(rs.getInt("paciente"));
         Date fechaD = rs.getDate("fecha");
         //DateFormat fechaDF = new SimpleDateFormat("yyyy/MM/dd");
@@ -371,85 +384,84 @@ public class Modelo {
         obj.setCodigoCita(rs.getInt("codigo_cita"));
         return obj;
     }
-   
-   public static List<Cita> busquedaCitasPacientePorFecha(int paciente,String fecha) throws Exception {
-       List<Cita> c;
-       c = new ArrayList();
-       java.util.Date fechautil;
-       java.sql.Date fechasql;
-       try {
-           fecha = fecha.replace('/', '-');
-           SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-           fechautil = format.parse(fecha);
-           fechasql = new java.sql.Date(fechautil.getTime());
-       } catch (Exception e) {
-           fechasql = new Date(0,1,1);
-       }
-       try {
-           String sql = "select * from citas where paciente="+paciente+
-                   " and fecha='"+fechasql+"' order by fecha desc";
-           ResultSet rs = clinica.executeQuery(sql);
-              while (rs.next()) {
+
+    public static List<Cita> busquedaCitasPacientePorFecha(int paciente, String fecha) throws Exception {
+        List<Cita> c;
+        c = new ArrayList();
+        java.util.Date fechautil;
+        java.sql.Date fechasql;
+        try {
+            fecha = fecha.replace('/', '-');
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            fechautil = format.parse(fecha);
+            fechasql = new java.sql.Date(fechautil.getTime());
+        } catch (Exception e) {
+            fechasql = new Date(0, 1, 1);
+        }
+        try {
+            String sql = "select * from citas where paciente=" + paciente
+                    + " and fecha='" + fechasql + "' order by fecha desc";
+            ResultSet rs = clinica.executeQuery(sql);
+            while (rs.next()) {
                 c.add(toCita(rs));
-              }
-       } catch (SQLException e) {
-           
-       }
-       return c;
-   }
-   
-   public static List<Cita> busquedaCitasPacientePorMedico(int paciente, String medico) throws Exception {
-       List<Cita> c;
-       c = new ArrayList();
-       try {
-           String mysql = "select * from medicos where nombre = '"+medico+"'";
-           ResultSet rs2 = clinica.executeQuery(mysql);
-           while (rs2.next()) {
-               try {
+            }
+        } catch (SQLException e) {
+
+        }
+        return c;
+    }
+
+    public static List<Cita> busquedaCitasPacientePorMedico(int paciente, String medico) throws Exception {
+        List<Cita> c;
+        c = new ArrayList();
+        try {
+            String mysql = "select * from medicos where nombre = '" + medico + "'";
+            ResultSet rs2 = clinica.executeQuery(mysql);
+            while (rs2.next()) {
+                try {
                     String str = rs2.getString("codigo");
-                    String sql = "select * from citas where paciente="+paciente+
-                            " and medico='"+str+"' order by fecha desc";
+                    String sql = "select * from citas where paciente=" + paciente
+                            + " and medico='" + str + "' order by fecha desc";
                     ResultSet rs = clinica.executeQuery(sql);
                     while (rs.next()) {
                         c.add(toCita(rs));
                     }
-               } catch (SQLException e) {
-           
-               }
-           }
-       } catch (SQLException e) {
-           
-       }
-       return c;
-   }
-   
-   public static String Agregar_Cita(Cita cita) throws Exception{
-        String sql="insert into clinica.citas "+
-                "(medico, paciente, fecha, hora, descripcion) "+
-                "values ('%s','%d','%s','%s','%s')";
-        sql=String.format(sql,cita.getMedico(),cita.getPaciente(),
+                } catch (SQLException e) {
+
+                }
+            }
+        } catch (SQLException e) {
+
+        }
+        return c;
+    }
+
+    public static String Agregar_Cita(Cita cita) throws Exception {
+        String sql = "insert into clinica.citas "
+                + "(medico, paciente, fecha, hora, descripcion) "
+                + "values ('%s','%d','%s','%s','%s')";
+        sql = String.format(sql, cita.getMedico(), cita.getPaciente(),
                 new SimpleDateFormat("yyyy-MM-dd").format(cita.getFecha()),
                 cita.getHora(),
                 cita.getDescripcion());
-        ResultSet rs =  clinica.insertar_modificar_borrar(sql);
+        ResultSet rs = clinica.insertar_modificar_borrar(sql);
         if (rs.next()) {
             return "-1"; // fracaso
-        }
-        else{
+        } else {
             return "0"; // éxito
         }
     }
-   
-   public static List<Cita> Buscar_Citas_Fecha(int medico,java.util.Date fecha) throws Exception{
+
+    public static List<Cita> Buscar_Citas_Fecha(int medico, java.util.Date fecha) throws Exception {
         List<Cita> citas = new ArrayList();
         try {
-            String sql="select * from clinica.citas "
+            String sql = "select * from clinica.citas "
                     + "where medico = '%d' "
                     + "and citas.fecha = '%s'";
-            sql=String.format(sql,medico,
-              new SimpleDateFormat("yyyy-MM-dd").format(fecha));
-            
-            ResultSet rs =  clinica.executeQuery(sql);
+            sql = String.format(sql, medico,
+                    new SimpleDateFormat("yyyy-MM-dd").format(fecha));
+
+            ResultSet rs = clinica.executeQuery(sql);
             while (rs.next()) {
                 citas.add(toCita(rs));
             }
@@ -457,43 +469,43 @@ public class Modelo {
         }
         return citas;
     }
-   
-   public static String Actualizar_Cita(Cita cita) throws Exception{
-        String sql="update clinica.citas set "
+
+    public static String Actualizar_Cita(Cita cita) throws Exception {
+        String sql = "update clinica.citas set "
                 + "fecha = '%s', hora = '%s', descripcion = '%s' "
                 + "where codigo_cita = '%d'";
-        sql=String.format(sql,
+        sql = String.format(sql,
                 new SimpleDateFormat("yyyy-MM-dd").format(cita.getFecha()),
                 cita.getHora(),
                 cita.getDescripcion(),
                 cita.getCodigoCita());
-        ResultSet rs =  clinica.insertar_modificar_borrar(sql);
+        ResultSet rs = clinica.insertar_modificar_borrar(sql);
         if (rs.next()) {
             return "-1"; // fracaso
-        }
-        else{
+        } else {
             return "0"; // éxito
         }
     }
-   
-   public static List<Cita> Buscar_Citas_Nombre(int medico,String nombre) throws Exception{
+
+    public static List<Cita> Buscar_Citas_Nombre(int medico, String nombre) throws Exception {
         List<Cita> citas = new ArrayList();
-        List<Palabra> cedulas_clientes = new ArrayList();String sql;
+        List<Palabra> cedulas_clientes = new ArrayList();
+        String sql;
         try {
-            sql="select cedula from "+
-                    "clinica.pacientes  "+
-                    "where nombre like '%%%s%%'";
-            sql=String.format(sql,nombre);
-            ResultSet rs =  clinica.executeQuery(sql);
+            sql = "select cedula from "
+                    + "clinica.pacientes  "
+                    + "where nombre like '%%%s%%'";
+            sql = String.format(sql, nombre);
+            ResultSet rs = clinica.executeQuery(sql);
             while (rs.next()) {
                 cedulas_clientes.add(toPalabra(rs));
             }
-            sql="select * from clinica.citas "
+            sql = "select * from clinica.citas "
                     + "where medico = '%d' "
                     + "and paciente = '%s'";
             for (Palabra cedula : cedulas_clientes) {
                 sql = String.format(sql, medico, cedula.getTexto());
-                rs =  clinica.executeQuery(sql);
+                rs = clinica.executeQuery(sql);
                 while (rs.next()) {
                     citas.add(toCita(rs));
                 }
@@ -502,16 +514,16 @@ public class Modelo {
         }
         return citas;
     }
-   
-   public static List<Cita> Buscar_Citas_Cedula(int medico,int cedula) throws Exception{
+
+    public static List<Cita> Buscar_Citas_Cedula(int medico, int cedula) throws Exception {
         List<Cita> citas = new ArrayList();
         try {
-            String sql="select * from clinica.citas "
+            String sql = "select * from clinica.citas "
                     + "where medico = '%d' "
                     + "and paciente = '%d'";
-            sql=String.format(sql,medico,cedula);
-            
-            ResultSet rs =  clinica.executeQuery(sql);
+            sql = String.format(sql, medico, cedula);
+
+            ResultSet rs = clinica.executeQuery(sql);
             while (rs.next()) {
                 citas.add(toCita(rs));
             }
@@ -519,17 +531,17 @@ public class Modelo {
         }
         return citas;
     }
-   
-   public static List<Cita> Proximas_Citas(int medico) throws Exception{
+
+    public static List<Cita> Proximas_Citas(int medico) throws Exception {
         List<Cita> citas = new ArrayList();
         try {
-            String sql="select * from clinica.citas "
+            String sql = "select * from clinica.citas "
                     + "where medico = '%d' "
                     + "and timestamp(fecha, hora) >= '%s' order by fecha asc";
-            sql=String.format(sql,medico,
+            sql = String.format(sql, medico,
                     new SimpleDateFormat("yyyy-MM-dd HH:mm").format(
                             new java.sql.Date(new java.util.Date().getTime())));
-            ResultSet rs =  clinica.executeQuery(sql);
+            ResultSet rs = clinica.executeQuery(sql);
             while (rs.next()) {
                 citas.add(toCita(rs));
             }
@@ -537,44 +549,43 @@ public class Modelo {
         }
         return citas;
     }
-   
+
 //*--------------------------------------------------------------------------------------------------------------------
 //*----------------------------------------------Observaciones---------------------------------------------------------
 //*--------------------------------------------------------------------------------------------------------------------
-   
-   public static List<Observacion> busquedaObservaciones(String cita) throws Exception{
-       List<Observacion> o;
-       o = new ArrayList();
-       try {
-           String sql;
-           int i = Integer.parseInt(cita);
-           sql = "select * from observaciones where codigo = "+i;
-           ResultSet rs = clinica.executeQuery(sql);
-           while(rs.next()) {
-               o.add(toObservacion(rs));
-           }
-       } catch(SQLException e) {
-           
-       }
-       return o;
-   }
-   
-   private static Observacion toObservacion(ResultSet rs) throws Exception {
+    public static List<Observacion> busquedaObservaciones(String cita) throws Exception {
+        List<Observacion> o;
+        o = new ArrayList();
+        try {
+            String sql;
+            int i = Integer.parseInt(cita);
+            sql = "select * from observaciones where codigo = " + i;
+            ResultSet rs = clinica.executeQuery(sql);
+            while (rs.next()) {
+                o.add(toObservacion(rs));
+            }
+        } catch (SQLException e) {
+
+        }
+        return o;
+    }
+
+    private static Observacion toObservacion(ResultSet rs) throws Exception {
         Observacion obj = new Observacion(0, "", "");
         obj.setCodigo(rs.getInt("codigo"));
         obj.setFecha(rs.getString("fecha"));
         obj.setObservacion(rs.getString("observacion"));
         return obj;
     }
-   
-   public static List<Observacion> Obtener_Observaciones(int codigo){
+
+    public static List<Observacion> Obtener_Observaciones(int codigo) {
         List<Observacion> observaciones = new ArrayList();
         try {
-            String sql="select * from clinica.observaciones "
+            String sql = "select * from clinica.observaciones "
                     + "where codigo = '%d' ";
-            sql=String.format(sql,codigo);
-            
-            ResultSet rs =  clinica.executeQuery(sql);
+            sql = String.format(sql, codigo);
+
+            ResultSet rs = clinica.executeQuery(sql);
             while (rs.next()) {
                 observaciones.add(aObservacion(rs));
             }
@@ -582,8 +593,8 @@ public class Modelo {
         }
         return observaciones;
     }
-    
-    private static Observacion aObservacion(ResultSet rs){
+
+    private static Observacion aObservacion(ResultSet rs) {
         try {
             Observacion o = new Observacion();
             o.setCodigo(rs.getInt("codigo"));
@@ -593,23 +604,22 @@ public class Modelo {
             return null;
         }
     }
-    
-    public static String Guardar_Observacion(Observacion o) throws Exception{
+
+    public static String Guardar_Observacion(Observacion o) throws Exception {
         Calendar c = Calendar.getInstance();
         int mes = c.get(Calendar.MONTH);
         mes++;
-        String fechasql = c.get(Calendar.YEAR)+
-                "-"+mes+
-                "-"+c.get(Calendar.DATE);
-        String sql="insert into clinica.observaciones "
+        String fechasql = c.get(Calendar.YEAR)
+                + "-" + mes
+                + "-" + c.get(Calendar.DATE);
+        String sql = "insert into clinica.observaciones "
                 + "(codigo, fecha, observacion) values "
                 + "('%d', '%s', '%s')";
-        sql=String.format(sql,o.getCodigo(),fechasql,o.getObservacion());
-        ResultSet rs =  clinica.insertar_modificar_borrar(sql);
+        sql = String.format(sql, o.getCodigo(), fechasql, o.getObservacion());
+        ResultSet rs = clinica.insertar_modificar_borrar(sql);
         if (rs.next()) {
             return "-1"; // fracaso
-        }
-        else{
+        } else {
             return "0"; // éxito
         }
     }
@@ -617,11 +627,10 @@ public class Modelo {
 //*--------------------------------------------------------------------------------------------------------------------
 //*-------------------------------------------------Palabra------------------------------------------------------------
 //*--------------------------------------------------------------------------------------------------------------------
-
-    private static Palabra toPalabra(ResultSet rs){
+    private static Palabra toPalabra(ResultSet rs) {
         try {
             Palabra p = new Palabra();
-            p.setTexto(""+rs.getInt("cedula"));
+            p.setTexto("" + rs.getInt("cedula"));
             return p;
         } catch (SQLException ex) {
             return null;
