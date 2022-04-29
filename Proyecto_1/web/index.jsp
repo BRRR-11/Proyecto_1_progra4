@@ -37,7 +37,7 @@
                 <div class="column">
                     <img width="100" height="100" style="margin-right: 1em; vertical-align: middle;" src="img/hospital.png"/>
                     <h3><strong>Paciente</strong></h3>
-                    <a href="Pagina3.jsp">
+                    <a href="Registro.jsp">
                         <button class="button button1">Ingresar</button>
                     </a>
                 </div>
