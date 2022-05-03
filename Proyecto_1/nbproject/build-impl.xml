@@ -995,8 +995,7 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.mysql-connector-java-8.0.28.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.mysql-connector-java-8.0.28.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.Proyecto_1_progra4-DB}" todir="${build.web.dir}/WEB-INF/classes"/>
-        <copyfiles files="${file.reference.mysql-connector-java-8.0.29.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
-    </target>
+        </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>
     </target>
