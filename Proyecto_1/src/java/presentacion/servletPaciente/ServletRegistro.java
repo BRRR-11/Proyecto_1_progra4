@@ -35,13 +35,13 @@ public class ServletRegistro extends HttpServlet {
         
         request.setAttribute("objController", obj);
         
-        try (PrintWriter out = response.getWriter()) {
-            Service.instance().clienteAdd(obj);
-            RequestDispatcher a = request.getRequestDispatcher("prueba.jsp");
-            a.forward(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(ServletRegistro.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try (PrintWriter out = response.getWriter()) {
+//            Service.instance().clienteAdd(obj);
+//            RequestDispatcher a = request.getRequestDispatcher("prueba.jsp");
+//            a.forward(request, response);
+//        } catch (Exception ex) {
+//            Logger.getLogger(ServletRegistro.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

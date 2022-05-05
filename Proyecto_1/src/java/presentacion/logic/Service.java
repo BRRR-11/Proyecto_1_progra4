@@ -32,10 +32,10 @@ public class Service {
 //    public List<Cliente> clienteAll(){
 //        return cDao.findAll();
 //    }
-    
-    public void clienteAdd(Paciente paciente) throws Exception{
-        cDao.create(paciente);
-    }    
+//    
+//    public void clienteAdd(Paciente paciente) throws Exception{
+//        cDao.create(paciente);
+//    }    
 //     public boolean verificaContraseña(String contras) throws Exception{
 //        String contraseña= contras;
 //        int cant=0;

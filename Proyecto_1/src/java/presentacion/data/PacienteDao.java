@@ -4,34 +4,72 @@
  */
 package presentacion.data;
 
+import cr.ac.una.db.dao.AbstractDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import paciente.dao.crud.pacienteCrud;
 import presentacion.logic.Paciente;
+import cr.ac.una.db.Database;
 
-public class PacienteDao {
-    Database db;
-    
-    public PacienteDao(){
-        db= Database.instance();
+public class PacienteDao extends AbstractDAO <String, Paciente> {
+ public PacienteDao() throws Exception  {
+         super(Database.getInstance(Pacientedb.CONFIGURACION),
+                new pacienteCrud()
+        );
     }
 
-    public void create(Paciente c) throws Exception{
-        String sql="insert into paciente (cedula, nombre, apellido, clave) "+
-                "values(?,?,?,?)";
-        PreparedStatement stm = db.prepareStatement(sql);
-        stm.setString(1, c.getCedula());
-        stm.setString(2, c.getNombre());
-        stm.setString(3, c.getApellido());
-        stm.setString(4, c.getClave());
-      
-        int count=db.executeUpdate(stm);
-        if (count==0){
-            throw new Exception("Cliente ya existe");
-        }
+    @Override
+    public Paciente getRecord(ResultSet rs)
+            throws SQLException {
+        return new Paciente(
+                rs.getString("cedula"),
+                rs.getString("nombre"),
+                rs.getString("apellidos"),
+                rs.getString("clave")
+        );
     }
+
+    @Override
+    public void setAddParameters(PreparedStatement stm,
+            String cedula, Paciente value)
+            throws SQLException {
+        stm.setString(1, cedula);
+        stm.setString(2, value.getNombre());
+        stm.setString(3, value.getApellido());
+        stm.setString(4, value.getClave());
+    }
+
+    @Override
+    public void setUpdateParameters(PreparedStatement stm,
+            String cedula, Paciente value)
+            throws SQLException {
+        stm.setString(1, value.getNombre());
+        stm.setString(2, value.getApellido());
+        stm.setString(3, value.getClave());
+        stm.setString(4, cedula);
+    }
+
+//    Database db;
+//    
+//    public PacienteDao(){
+//        db= Database.instance();
+//    }
+//
+//    public void create(Paciente c) throws Exception{
+//        String sql="insert into paciente (cedula, nombre, apellido, clave) "+
+//                "values(?,?,?,?)";
+//        PreparedStatement stm = db.prepareStatement(sql);
+//        stm.setString(1, c.getCedula());
+//        stm.setString(2, c.getNombre());
+//        stm.setString(3, c.getApellido());
+//        stm.setString(4, c.getClave());
+//      
+//        int count=db.executeUpdate(stm);
+//        if (count==0){
+//            throw new Exception("Cliente ya existe");
+//        }
+//    }
 //    
 //    public Paciente read(String nombre) throws Exception{
 //        String sql="select * from cliente c where nombre=?";

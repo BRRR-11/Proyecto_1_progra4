@@ -6,7 +6,7 @@ package presentacion.logic;
 
 import java.io.Serializable;
 
-public class Paciente implements Serializable, Jsonable{
+public class Paciente implements Serializable{
     String cedula;
     String nombre;
     String apellido;

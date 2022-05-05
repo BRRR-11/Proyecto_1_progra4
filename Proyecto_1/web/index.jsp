@@ -4,6 +4,15 @@
     Author     : ariqq
 --%>
 
+<%@page import="java.sql.SQLException"%>
+<%@page import="presentacion.logic.Paciente"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="java.util.Properties"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -50,6 +59,41 @@
                     </a>
                 </div>
             </div>
+        </div>
+        <div>
+            <%
+                        try {
+                            final String ruta_propiedades
+                                    = "/presentacion/data/paciente.properties";
+                            final String seleccion
+                                    = "SELECT * FROM paciente ORDER BY cedula; ";
+
+                            Properties p = new Properties();
+                            p.loadFromXML(getClass().getResourceAsStream(ruta_propiedades));
+
+                            InitialContext ctx = new InitialContext();
+                            DataSource db = (DataSource) ctx.lookup(p.getProperty("JNDI_name"));
+
+                            try (Connection cnx = db.getConnection();
+                                Statement stm = cnx.createStatement();
+                                ResultSet rs = stm.executeQuery(seleccion)) {
+
+                                while (rs.next()) {
+                                    Paciente usuario = new Paciente(
+                                            rs.getString("cedula"),
+                                            rs.getString("nombre"),
+                                            rs.getString("apellidos"),
+                                            rs.getString("clave")
+                                    );
+                                    out.println(String.format("\t%s<br />%n", usuario));
+                                }
+
+                            }
+
+                        } catch (IOException | NullPointerException | SQLException ex) {
+                            out.println(String.format("\tExcepción: '%s'%n", ex.getMessage()));
+                        }
+                    %>
         </div>
     </body>
 </html>
