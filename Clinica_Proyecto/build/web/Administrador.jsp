@@ -24,7 +24,7 @@
                 <div class="centrar">
                     <div class="column">
                         <div class= "p1">
-                            <h3><strong>Listar médicos</strong></h3>
+                            <h3><strong>Cambiar especialidad medico</strong></h3>
                             <a href="ListaMedicos.jsp">
                                 <button class="button button1">Ingresar</button>
                             </a>

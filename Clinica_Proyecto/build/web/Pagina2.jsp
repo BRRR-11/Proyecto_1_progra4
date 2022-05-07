@@ -22,14 +22,14 @@
                 <div class="centrar">
                     <div class="column">
                         <div class= "p1">
-                            <h3><strong>Registro de médicos</strong></h3>
+                            <h3><strong>Citas Reservadas</strong></h3>
                             <button class="button button1">Ingresar</button>
                         </div>
                     </div>
 
                     <div class="column">
                         <div class= "p2">
-                            <h3><strong>Gestión de citas</strong></h3>
+                            <h3><strong>Citas Disponibles</strong></h3>
                             <button class="button button1">Ingresar</button>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                 <div class="abajo">
                     <div class="column">
                         <div class= "p3">
-                            <h3><strong>Perfil de médico</strong></h3>
+                            <h3><strong>Datos del médico</strong></h3>
                             <button class="button button1">Ingresar</button>
                         </div>
                     </div>
