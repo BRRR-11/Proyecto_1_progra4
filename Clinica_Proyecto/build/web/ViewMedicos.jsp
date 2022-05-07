@@ -53,7 +53,7 @@
                                             rs.getString("clave"),
                                             rs.getString("telefono"),
                                             rs.getString("direccion"),
-                                            rs.getString("id_especialidad"),
+                                            rs.getString("idEspecialidad"),
                                             rs.getInt("frecuenciaCita")
                 
                                     );

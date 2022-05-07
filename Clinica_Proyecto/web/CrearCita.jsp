@@ -31,10 +31,7 @@
                     <input type="text" required name="hora">
                     <label>Hora</label>
                 </div>
-                <div class="txt_field">
-                    <input type="text" required name="estado">
-                    <label>Estado</label>
-                </div>
+                
                 <div class="botonCen">
                     <input type="submit" value="Agregar Cita">
                 </div>
