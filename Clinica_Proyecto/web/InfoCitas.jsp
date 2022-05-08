@@ -3,6 +3,7 @@
     Created on : 07/05/2022, 07:05:47 PM
     Author     : Admin
 --%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
@@ -28,35 +29,29 @@
             <span>Clinica San Tinder</span>
         </header>
         <div class="center">
-         <%
-                            final String ruta_propiedades
-                                    = "/cr/ac/una/eif209/ejemplo2/db.properties";
-                            final String seleccion
-                                    = "SELECT * FROM cita ;";
-                            
-                            Properties p = new Properties();
-                            p.loadFromXML(getClass().getResourceAsStream(ruta_propiedades));
-                            InitialContext ctx = new InitialContext();
-                            DataSource db = (DataSource) ctx.lookup(p.getProperty("JNDI_name"));
-                            
-                        try {
-                            try (Connection cnx = db.getConnection();
-                                Statement stm = cnx.createStatement();
-                                ResultSet rs = stm.executeQuery(seleccion)) {
-                                while (rs.next()) {
-                                    Cita medico = new Cita(
-                                            rs.getString("id_Medico"),
-                                            rs.getString("id_Paciente"),
-                                            rs.getString("hora"),
-                                            rs.getString("estado")
-                                    );
-                                    out.println(String.format("\t%s<br />%n",medico.VerCita()));
-                                }
-                            }
-                        } catch (IOException | NullPointerException | SQLException ex) {
-                            out.println(String.format("\tExcepción: '%s'%n", ex.getMessage()));
-                        }
-                    %>
+         <form action="ServletListaCita" method="POST">
+                 <div class="txt_field">
+                 <input type="text" required name="cedula">
+                 <label>Digite numero de cedula del medico</label>
+                </div>
+                 <div class="botonCen">
+                        <input type="submit" value="Busca">
+                 </div>
+                 <div>
+            <%
+              
+                Cita obj = new Cita();
+                obj = (Cita) request.getAttribute("objController");
+                if (obj != null) {
+                    out.print(obj.getId_Medico());
+                    out.print(obj.getId_Paciente());
+                    out.print(obj.getHora());
+                    out.print(obj.getEstado());
+                }
+
+            %>
+                 </div>
+            </form>
            </div>
     </body>
 </html>
