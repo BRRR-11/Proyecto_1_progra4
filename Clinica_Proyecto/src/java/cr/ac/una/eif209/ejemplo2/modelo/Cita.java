@@ -4,12 +4,16 @@
  */
 package cr.ac.una.eif209.ejemplo2.modelo;
 
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.List;
+
 public class Cita {
     String id_Medico;
     String id_Paciente;
     String hora;
     String estado;
-
+    
     public Cita() {
         this("","","","");
     }
@@ -67,6 +71,16 @@ public class Cita {
                 getId_Medico(),
                 getHora(),
                 getEstado());
+    }
+
+   List<Cita> list = new ArrayList(); 
+   public void GuardarCita(String id_Medico,String id_Paciente,String hora,String estado){
+          list.add(new Cita(id_Medico,id_Paciente,hora, estado));
+         //list.add(id_Medico,id_Paciente,hora, estado);
+    }
+
+   public String ListarCita(){
+        return  list.toString();
     }
     
     

@@ -61,10 +61,14 @@ public class ServletBuscarCita extends HttpServlet {
                 myInsert.setString(1, request.getParameter("id_Medico"));
                 myInsert.setString(2, "disponible");
                 ResultSet rs = myInsert.executeQuery();
+                
                 if (rs.next()) {
-                    Cita c = from(rs, "c");
-                    out.printf(c.toString());
-                    request.setAttribute("objController", c);
+                    while(rs.next()){
+                        Cita c = from(rs, "c");
+                        out.printf(c.toString());
+                        request.setAttribute("objController", c);
+
+                    }
 
                 } else {
                     out.printf("Cliente no Existe");
@@ -88,6 +92,8 @@ public class ServletBuscarCita extends HttpServlet {
             c.setId_Paciente(rs.getString(alias + ".id_Paciente"));
             c.setHora(rs.getString(alias + ".hora"));
             c.setEstado(rs.getString(alias + ".estado"));
+            c.GuardarCita(alias+ ".id_Medico", alias+ ".id_Paciente", alias+ ".hora", alias+ ".estado");
+            c.ListarCita();
             return c;
         } catch (SQLException ex) {
             return null;

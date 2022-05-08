@@ -4,6 +4,7 @@
     Author     : ariqq
 --%>
 
+<%@page import="cr.ac.una.eif209.ejemplo2.modelo.Cita"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,5 +39,7 @@
 
             </form>
         </div>
+        
+
     </body>
 </html>

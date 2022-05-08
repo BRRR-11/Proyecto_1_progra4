@@ -37,21 +37,31 @@
                  <div class="botonCen">
                         <input type="submit" value="Busca">
                  </div>
-                 <div>
-            <%
-              
-                Cita obj = new Cita();
-                obj = (Cita) request.getAttribute("objController");
-                if (obj != null) {
-                    out.print(obj.getId_Medico());
-                    out.print(obj.getId_Paciente());
-                    out.print(obj.getHora());
-                    out.print(obj.getEstado());
-                }
+ <div>
+                <%
 
-            %>
-                 </div>
+                    Cita obj = new Cita();
+                    obj = (Cita) request.getAttribute("objController");
+                    if (obj != null) {
+                        out.print(obj.getId_Medico());
+                        out.print(obj.getId_Paciente());
+                        out.print(obj.getHora());
+                        out.print(obj.getEstado());
+                    }
+
+                %>
+                <%
+
+                                    obj=(Cita)request.getAttribute("objController");
+                                    if(obj!=null)
+                                    {
+                                      out.print(obj.ListarCita());
+                                    }
+
+                %>
+            </div>
             </form>
            </div>
+          
     </body>
 </html>
