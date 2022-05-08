@@ -61,6 +61,13 @@ public class Cita {
                 getHora(),
                 getEstado());
     }
+
+    public String VerCita() {
+        return String.format("%s, %s,%s",
+                getId_Medico(),
+                getHora(),
+                getEstado());
+    }
     
     
 }

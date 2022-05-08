@@ -117,4 +117,14 @@ public class Medico implements Serializable{
         return String.format("%s",
                 getDireccion());
     }
+
+   public String showCitaInfo() {
+        return String.format("%s,%s, %s, %s, %s",
+                getCedula(),
+                getNombre(),
+                getId_Especialidad(),
+                getTelefono(),
+                getDireccion());
+    }
+
 }

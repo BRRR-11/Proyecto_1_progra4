@@ -22,8 +22,10 @@
                 <div class="centrar">
                     <div class="column">
                         <div class= "p1">
-                            <h3><strong>Citas Reservadas</strong></h3>
-                            <button class="button button1">Ingresar</button>
+                            <h3><strong>Ver Citas</strong></h3>
+                            <a href="InfoCitas.jsp">
+                                <button class="button button1">Ingresar</button>
+                            </a>
                         </div>
                     </div>
 
@@ -38,11 +40,11 @@
             </div>
             <div class="row">
                 <div class="abajo">
-                    <div class="column">
-                        <div class= "p3">
-                            <h3><strong>Datos del médico</strong></h3>
-                            <button class="button button1">Ingresar</button>
-                        </div>
+                    <div class="column">  
+                            <div class= "p3">
+                                <h3><strong>Datos del médico</strong></h3>
+                                <button class="button button1">Ingresar</button>
+                            </div>  
                     </div>
                     <div class="column">
                         <div class= "p4">

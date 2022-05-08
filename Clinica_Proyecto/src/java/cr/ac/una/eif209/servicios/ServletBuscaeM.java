@@ -63,7 +63,7 @@ public class ServletBuscaeM extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(ServletBuscar.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher a = request.getRequestDispatcher("Prueba.jsp");
+            RequestDispatcher a = request.getRequestDispatcher("InfoMedico.jsp");
             a.forward(request, response);
 
         } catch (NamingException ex) {
