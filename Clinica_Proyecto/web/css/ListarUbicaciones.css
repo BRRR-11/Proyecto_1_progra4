@@ -5,11 +5,12 @@ body {
     margin: 0;
     padding: 0;
     background-color: #bdd5ea;
+    
 }
 
 * {
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif !important;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -52,4 +53,36 @@ h3 {
     padding: .5em 0em .5em 0em;
     text-align: center;
     background-color: #577399;
+}
+
+.desc{
+    border: 10px; 
+    max-width: 700px;
+    margin: auto; 
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+    font-size: 1em;
+    font-weight: 300;
+    color: #577399;
+
+}
+
+.info{
+    border: 10px solid #577399; 
+    max-width: 700px;
+    margin: auto; 
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 25px;
+    background-color: #F7F7FF;
+    font-weight: bold;
+}
+
+.wrapper{
+    border: 10px;
+    height: 90vh;
+    padding-top: 70px;
 }

@@ -19,7 +19,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/Style.css" rel="stylesheet" type="text/css" />
+        <link href="css/ListarUbicaciones.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
     <body>
@@ -27,32 +27,38 @@
             <img width="100" height="100" style="margin-right: 1em; vertical-align: middle;" src="img/hospital.png"/>
             <span>Clinica San Tinder</span>
         </header>
-        <%
-                            final String ruta_propiedades
-                                    = "/cr/ac/una/eif209/ejemplo2/db.properties";
-                            final String seleccion
-                                    = "SELECT * FROM especialidad;";
-                            
-                            Properties p = new Properties();
-                            p.loadFromXML(getClass().getResourceAsStream(ruta_propiedades));
-                            InitialContext ctx = new InitialContext();
-                            DataSource db = (DataSource) ctx.lookup(p.getProperty("JNDI_name"));
-                            
-                        try {
-                            try (Connection cnx = db.getConnection();
-                                Statement stm = cnx.createStatement();
-                                ResultSet rs = stm.executeQuery(seleccion)) {
-                                while (rs.next()) {
-                                    Especialidad espe = new Especialidad(
-                                            rs.getString("id"),
-                                            rs.getString("descripcion")
-                                    );
-                                    out.println(String.format("\t%s<br />%n", espe));
-                                }
+        <div class="wrapper">
+            <div class="desc">
+                <h2> ESPECIALIDADES REGISTRADAS </h2>
+            </div>
+            <div class="info">
+                <%
+                    final String ruta_propiedades
+                            = "/cr/ac/una/eif209/ejemplo2/db.properties";
+                    final String seleccion
+                            = "SELECT * FROM especialidad;";
+
+                    Properties p = new Properties();
+                    p.loadFromXML(getClass().getResourceAsStream(ruta_propiedades));
+                    InitialContext ctx = new InitialContext();
+                    DataSource db = (DataSource) ctx.lookup(p.getProperty("JNDI_name"));
+
+                    try {
+                        try ( Connection cnx = db.getConnection();  Statement stm = cnx.createStatement();  ResultSet rs = stm.executeQuery(seleccion)) {
+                            while (rs.next()) {
+                                Especialidad espe = new Especialidad(
+                                        rs.getString("id"),
+                                        rs.getString("descripcion")
+                                );
+                                out.println(String.format("\t%s<br />%n", espe));
                             }
-                        } catch (IOException | NullPointerException | SQLException ex) {
-                            out.println(String.format("\tExcepción: '%s'%n", ex.getMessage()));
                         }
-                    %>
+                    } catch (IOException | NullPointerException | SQLException ex) {
+                        out.println(String.format("\tExcepción: '%s'%n", ex.getMessage()));
+                    }
+                %>
+            </div>
+        </div>
+
     </body>
 </html>
