@@ -46,4 +46,10 @@ public class Especialidad implements Serializable {
                 getDescripcion());
                      
     }
+
+     public String showEspacialidad() {
+        return String.format("%s",
+                getDescripcion());
+                     
+    }
 }

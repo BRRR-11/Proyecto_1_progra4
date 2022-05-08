@@ -1,6 +1,6 @@
 <%-- 
-    Document   : InfoCitas
-    Created on : 07/05/2022, 07:05:47 PM
+    Document   : InfoEspecialidades
+    Created on : 07/05/2022, 07:45:34 PM
     Author     : Admin
 --%>
 <%@page import="java.sql.ResultSet"%>
@@ -12,7 +12,7 @@
 <%@page import="java.util.Properties"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.io.IOException"%>
-<%@page import="cr.ac.una.eif209.ejemplo2.modelo.Cita"%>
+<%@page import="cr.ac.una.eif209.ejemplo2.modelo.Especialidad"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,17 +22,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <
         <header class="titulo">
             <img width="100" height="100" style="margin-right: 1em; vertical-align: middle;" src="img/hospital.png"/>
             <span>Clinica San Tinder</span>
         </header>
-        <div class="center">
+         <div class="center">
          <%
                             final String ruta_propiedades
                                     = "/cr/ac/una/eif209/ejemplo2/db.properties";
                             final String seleccion
-                                    = "SELECT * FROM cita ;";
+                                    = "SELECT * FROM especialidad ;";
                             
                             Properties p = new Properties();
                             p.loadFromXML(getClass().getResourceAsStream(ruta_propiedades));
@@ -44,19 +43,17 @@
                                 Statement stm = cnx.createStatement();
                                 ResultSet rs = stm.executeQuery(seleccion)) {
                                 while (rs.next()) {
-                                    Cita medico = new Cita(
-                                            rs.getString("id_Medico"),
-                                            rs.getString("id_Paciente"),
-                                            rs.getString("hora"),
-                                            rs.getString("estado")
+                                    Especialidad especialidad = new Especialidad(
+                                            rs.getString("id"),
+                                            rs.getString("descripcion")
                                     );
-                                    out.println(String.format("\t%s<br />%n",medico.VerCita()));
+                                    out.println(String.format("\t%s<br />%n", especialidad.showEspacialidad()));
                                 }
                             }
                         } catch (IOException | NullPointerException | SQLException ex) {
                             out.println(String.format("\tExcepción: '%s'%n", ex.getMessage()));
                         }
-                    %>
+                %>
            </div>
     </body>
 </html>

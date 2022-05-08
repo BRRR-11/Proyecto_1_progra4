@@ -27,7 +27,7 @@
             <img width="100" height="100" style="margin-right: 1em; vertical-align: middle;" src="img/hospital.png"/>
             <span>Clinica San Tinder</span>
         </header>
-        <div class="centerL">
+        <div class="center">
          <%
                             final String ruta_propiedades
                                     = "/cr/ac/una/eif209/ejemplo2/db.properties";

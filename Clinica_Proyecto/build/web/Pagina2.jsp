@@ -48,8 +48,10 @@
                     </div>
                     <div class="column">
                         <div class= "p4">
-                            <h3><strong>Identificación</strong></h3>
+                            <h3><strong>Ver Especialidades</strong></h3>
+                         <a href="InfoEspecialidades.jsp"> 
                             <button class="button button1">Ingresar</button>
+                         </a>
                         </div>
                     </div>
 
