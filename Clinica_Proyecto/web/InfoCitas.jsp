@@ -50,7 +50,7 @@
                                             rs.getString("hora"),
                                             rs.getString("estado")
                                     );
-                                    out.println(String.format("\t%s<br />%n", medico.VerCita()));
+                                    out.println(String.format("\t%s<br />%n",medico.VerCita()));
                                 }
                             }
                         } catch (IOException | NullPointerException | SQLException ex) {
